@@ -1,11 +1,68 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+// User info
+model Users {
+  user_id String @db.VarChar( 36 ) @id @default( uuid() )
+  createAt DateTime @default( now() )
+  updatedAt DateTime @updatedAt
+  username String @db.VarChar( 50 )
+  log_id String @db.VarChar( 36 ) @unique
+  login Login @relation( fields: [ log_id ], references: [ log_id ], onDelete: Cascade )
+  room_added Room_added[]
+  room_joined Room_joined[]
+  participations Participations[]
+}
+// User Login Data
+model Login {
+  log_id String @db.VarChar( 36 ) @id @default( uuid() )
+  createAt DateTime @default( now() )
+  updatedAt DateTime @updatedAt
+  log_email String @db.VarChar( 255 ) @unique
+  log_password String @unique // Need to find a good Varchar length
+  user Users?
+}
+// Room data
+model Rooms {
+  ro_id String @db.VarChar( 36 ) @id @default( uuid() )
+  createAt DateTime @default( now() )
+  updatedAt DateTime @updatedAt
+  ro_name String @db.VarChar( 100 )
+  room_added Room_added?
+  room_joined Room_joined[]
+  participations Participations[]
+}
+// To list a user in a Room
+model Room_joined {
+  room_joined_id String @db.VarChar( 36 ) @id @default( uuid() )
+  createAt DateTime @default( now() )
+  updatedAt DateTime @updatedAt
+  user_id String @db.VarChar( 36 )
+  ro_id String @db.VarChar( 36 )
+  user Users @relation( fields: [ user_id ], references: [ user_id ] )
+  room Rooms @relation( fields: [ ro_id ], references: [ ro_id ] )
+}
+// To see the owner of a room
+model Room_added {
+  createAt DateTime @default( now() )
+  updatedAt DateTime @updatedAt
+  user_id String @db.VarChar( 36 )
+  ro_id String @db.VarChar( 36 ) @unique
+  user Users @relation( fields: [ user_id ], references: [ user_id ] )
+  room Rooms @relation( fields: [ ro_id ], references: [ ro_id ], onDelete: Cascade )
+}
+// User talk history
+model Participations {
+  pa_id String @db.VarChar( 36 ) @id @default( uuid() )
+  user_id String @db.VarChar( 36 )
+  ro_id String @db.VarChar( 36 )
+  pa_time Int @db.Integer // Participation time in seconds
+  user Users @relation( fields: [user_id], references: [user_id] )
+  room Rooms @relation( fields: [ro_id], references: [ro_id] )
 }
