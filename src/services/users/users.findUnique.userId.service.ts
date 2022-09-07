@@ -2,11 +2,11 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const findUserWhereLogId = async ( logId:string ) => {
+const findUserWhereUserId = async ( user_id:string ) => {
     return await prisma.users.findUnique({
         where: {
-            log_id: logId
+            user_id
         }
     })
 }
-export default findUserWhereLogId;
+export default findUserWhereUserId;
