@@ -40,7 +40,7 @@ model Rooms {
 }
 // To list a user in a Room
 model Room_joined {
-  room_joined_id String @db.VarChar( 36 ) @id @default( uuid() )
+  rj_id String @db.VarChar( 36 ) @id @default( uuid() )
   createAt DateTime @default( now() )
   updatedAt DateTime @updatedAt
   user_id String @db.VarChar( 36 )
