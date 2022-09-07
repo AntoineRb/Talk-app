@@ -17,6 +17,27 @@ This application have been created from :
   * Morgan
   * Pug
   * Cors
-
-
 ---
+
+## Tree Structure
+
+  |- **Docs**  
+|----|__ Database  
+|----|__ README.md  
+|- **prisma**  
+|----|__ migrations directory  
+|----|__ schema.prisma ( DB schema )  
+|- **public**  
+|----|__ js  
+|----|__ css  
+|----|__ img  
+|-  **src**  
+|----|__controllers  
+|----|__routes  
+|----|__services  
+|----|__views  
+|----|__config.ts  
+|----|__server.ts  
+
+
+
