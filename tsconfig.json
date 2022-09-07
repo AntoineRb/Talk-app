@@ -1,16 +1,15 @@
 {
     "compilerOptions": {
       /* Language and Environment */
-      "target": "esnext",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+      "target": "esnext",
       "strict": true,
       "sourceMap": true,
       "outDir": "dist",
       "lib": ["esnext"],
       /* Modules */
-      "module": "CommonJs",                                   /* Specify what module code is generated. */
-      "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */
+      "module": "CommonJs",                                
+      "esModuleInterop": true,                             
       "noEmitOnError": true,
       "baseUrl": "./src",
     },
-    "exclude": ["./faker"]
 }
