@@ -2,10 +2,10 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const deleteRoom = async ( id:string ) => {
+const deleteRoom = async ( ro_id:string ) => {
     return await prisma.rooms.delete({
         where: {
-            ro_id: id
+            ro_id
         }
     })
 }
