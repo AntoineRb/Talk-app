@@ -21,7 +21,9 @@ This application have been created from :
 
 ## Tree Structure
 
-  |- **Docs**  
+
+Visio-App ( root )  
+|- **Docs**  
 |----|__ Database  
 |----|__ README.md  
 |- **prisma**  
