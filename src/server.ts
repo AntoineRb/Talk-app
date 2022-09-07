@@ -3,6 +3,8 @@ import http from "http";
 import { Server } from "socket.io";
 import { ExpressPeerServer } from "peer";
 
+import path from "path";
+
 import config from "./config";
 
 const app = Express();
@@ -16,6 +18,7 @@ const PORT = config.port;
 app
     .use( '/peersjs', peerServer )
     .set( 'view engine', 'pug' )
+    .set( 'views', path.join( __dirname, '/views' ) )
     .use( Express.static( 'public' ) );
     
 app
