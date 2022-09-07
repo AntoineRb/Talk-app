@@ -5,7 +5,6 @@ import { ExpressPeerServer } from "peer";
 
 import config from "./config";
 
-
 const app = Express();
 const server = new http.Server( app );
 const io = new Server( server );
