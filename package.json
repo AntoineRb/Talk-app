@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "nodemon src/server.ts"
+    "start:dev": "nodemon src/server.ts",
+    "compile": "tsc && rsync -av ./src/views ./dist/"
   },
   "author": "",
   "license": "ISC",
