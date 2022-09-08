@@ -6,6 +6,9 @@ const findManyRoomJoinedWhereUserId = async ( user_id:string ) => {
     return await prisma.room_joined.findMany({
         where: {
             user_id 
+        },
+        select: {
+            room: true
         }
     })
 } 
