@@ -2,11 +2,14 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const createUser = async ( log_id:string ) => {
+const findUniqueLogin = async ( log_id:string ) => {
     return await prisma.login.findUnique({
         where: {
             log_id
+        },
+        select: {
+            user: true
         }
     })
 }
-export default createUser;
+export default findUniqueLogin;
