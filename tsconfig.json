@@ -28,6 +28,9 @@
         "@/routes/*": [
           "routes/*"
         ],
+        "@/middlewares/*": [
+          "middlewares/*"
+        ],
       }
     },
     "include": ["./src/**/*.ts"]
