@@ -17,6 +17,13 @@ This application have been created from :
   * Morgan
   * Pug
   * Cors
+  * bcrypt
+  * cookie-parser
+  * Dev dependencies:
+    * Jest
+    * nodemon
+    * ts-node
+    * tsconfig-paths
 ---
 
 ## Tree Structure
@@ -35,6 +42,7 @@ Visio-App ( root )
 |----|__ img  
 |-  **src**  
 |----|__controllers  
+|----|__middlewares  
 |----|__routes  
 |----|__services  
 |----|__views  
