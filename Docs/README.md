@@ -19,11 +19,12 @@ This application have been created from :
   * Cors
   * bcrypt
   * cookie-parser
-  * Dev dependencies:
-    * Jest
-    * nodemon
-    * ts-node
-    * tsconfig-paths
+
+Dev dependencies :  
+  * Jest  
+  * nodemon  
+  * ts-node  
+  * tsconfig-paths  
 ---
 
 ## Tree Structure
