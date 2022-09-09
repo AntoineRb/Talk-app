@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 // Node core modules
 import path from "path";
 import http from "http";
-// Config module
+// Visio-app Config module
 import config from "./config";
 // Middleware
 import authMiddleware from "@/middlewares/jwt/jwt.validate.middleware";
