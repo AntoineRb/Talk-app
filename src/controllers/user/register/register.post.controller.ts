@@ -97,7 +97,7 @@ const registerPostController = async ( req:Request, res:Response ) => {
         {
             user_id: newUser.user_id,
             username: newUser.username,
-            log_email: newUserLogin.log_email
+            email: newUserLogin.log_email
         }, 
         res 
     )

@@ -7,7 +7,7 @@ import config from "config";
 interface ITokenPayload {
     user_id:string,
     username:string,
-    log_email:string
+    email:string
 }
 
 const generateToken = async ( userInfo:ITokenPayload, res:Response ) => {
@@ -15,7 +15,7 @@ const generateToken = async ( userInfo:ITokenPayload, res:Response ) => {
     const payload:ITokenPayload = {
         user_id: userInfo.user_id,
         username: userInfo.username,
-        log_email: userInfo.log_email
+        email: userInfo.email
     }
     const signOptions:SignOptions = {
         algorithm: 'RS512',
