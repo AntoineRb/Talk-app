@@ -12,7 +12,6 @@ router.use( async ( req, res, next ) => {
         });
     }
     const decodedToken = await validateToken( jwt );
-    console.log( decodedToken )
     if ( !decodedToken ) {
         return res
         .status(401)
