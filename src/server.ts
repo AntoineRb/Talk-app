@@ -11,9 +11,10 @@ import config from "./config";
 // Middleware
 import authMiddleware from "@/middlewares/jwt/jwt.validate.middleware";
 // Routes
-import registerRoute from "@/routes/user/register.routes";
-import loginRoute from "@/routes/user/login.routes";
-import logoutRoute from "@/routes/user/logout.routes";
+import registerRoutes from "@/routes/user/register.routes";
+import loginRoutes from "@/routes/user/login.routes";
+import logoutRoutes from "@/routes/user/logout.routes";
+import dashboardRoutes from "@/routes/dashboard/dashboard.routes";
 
 
 const app = Express();
@@ -26,18 +27,39 @@ app
     .use( '/peersjs', peerServer )
     .set( 'view engine', 'pug' )
     .set( 'views', path.join( __dirname, '/views' ) )
-    .use( Express.static( 'public' ) )
+    // .use( Express.static( 'public' ) )
     .use( Express.json() )
-    .use( cookieParser() );
+    .use( cookieParser() )
+    .use( Express.static( path.join( __dirname, '/../public'), {// Or dist
+        dotfiles: "ignore",
+        etag:true,
+        extensions: ['htm', 'html'],
+        index: false,
+        maxAge: "7d",
+        redirect: false,
+        setHeaders: ( res ) => {
+            const actualTime = Date.now()
+            res.set("x-timestamp", actualTime.toString() );
+        },
+    })); 
     
 app 
     .get('/', ( req , res )  => {
         res.render('index')
     })
-    .use( registerRoute )
-    .use( loginRoute )
+    .use( registerRoutes )
+    .use( loginRoutes )
     .use( authMiddleware )
-    .use( logoutRoute );
+    .use( logoutRoutes )
+    // .use( dashboardRoutes );
+    .get( '/dashboard/:uname', ( req, res ) => {
+        const username = req.params.uname;
+        console.log( username )
+        return res.render( 'auth-views/dashboard', { 
+            username
+        });
+    });
+
 
 server.listen( PORT, () => {
     console.log( `Server listening on: http://localhost:${PORT}/` )
