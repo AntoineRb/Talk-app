@@ -6,6 +6,7 @@ import path from "path";
 import http from "http";
 import config from "./config";
 import registerRoutes from "@/routes/user/register.routes";
+import loginRoutes from "@/routes/user/login.routes";
 import authMiddleware from "@/middlewares/jwt/jwt.validate.middleware"
 
 const app = Express();
@@ -27,6 +28,7 @@ app
         res.render('index')
     })
     .use( registerRoutes )
+    .use( loginRoutes )
     .use( authMiddleware );
 
 server.listen( PORT, () => {
