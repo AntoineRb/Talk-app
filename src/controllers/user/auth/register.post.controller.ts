@@ -93,16 +93,17 @@ const registerPostController = async ( req:Request, res:Response ) => {
             message: "Cannot create User"
         })
     }
-    await generateToken(
-        {
+    await generateToken({
             user_id: newUser.user_id,
             username: newUser.username,
             email: newUserLogin.log_email
         }, 
         res 
     )
-    return res.render( 'auth-views/dashboard', { 
-        username:newUser.username 
+    res.status( 200 )
+    .send({ 
+        message:'success', 
+        username:newUser.username
     });
 }
 export default registerPostController;
