@@ -1,4 +1,4 @@
-import validateToken from "@/utils/jwt/validateToken.utils";
+import validateToken from "@/utils/jwt/validate-token.utils";
 import { Router } from "express";
 
 const router = Router();
