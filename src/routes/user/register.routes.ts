@@ -3,8 +3,12 @@ import registerPostController from "@/controllers/user/auth/register.post.contro
 
 const router = Router();
 
+router.get('/register', async ( req, res ) => {
+    return res.render('register');
+});
 router.post('/register', async ( req, res ) => {
     await registerPostController( req, res );
 });
+
 
 export default router;
