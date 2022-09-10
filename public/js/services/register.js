@@ -116,21 +116,21 @@ registerForm.addEventListener('submit', async ( e ) => {
     const username = usernameInput.value;
     const password = passwordInput.value;
     const passwordConfirm = passwordConfirmInput.value;
-    if ( !emailRegex.test( email ) ) {
-        // do something...
-        return;
+    if ( !usernameRegex.test( username ) ) {
+        alert(`Incorrect username :\n'${username}' is not a valid username.`);
+        return; 
     }
-    if ( !usernameRegex.test( user ) ) {
-        // do something...
+    if ( !emailRegex.test( email ) ) {
+        alert(`Incorrect email address:\n'${email}' is not a valid mail address.`);
         return;
     }
     if ( !passwordRegex.test( password ) ) {
-        // do something...
+        alert(`Incorrect password format!`);
         return;
     }
     if ( password !== passwordConfirm ) {
-        // do something...
-        return;
+        alert(`Password dont match with the confirmation!`);
+        return; 
     }
     await fetch( config.BASE_URL + '/register', {
         method: 'POST',
