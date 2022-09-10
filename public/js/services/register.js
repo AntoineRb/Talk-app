@@ -2,47 +2,112 @@ import config from "./config.js"
 import { emailRegex, passwordRegex, usernameRegex } from "../utils/regex.js";
 // Register Form
 const registerForm = document.querySelector('#register-form');
-// Email Input
-const emailInput = registerForm.querySelector('#email');
 // Username Input
 const usernameInput = registerForm.querySelector('#username');
-// Password Input
+// Email Input
+const emailInput = registerForm.querySelector('#email');
+// Password Inputs
 const passwordInput = registerForm.querySelector('#password');
 const passwordConfirmInput = registerForm.querySelector('#password-confirmation');
 
+// Username Input Event
+usernameInput.addEventListener('input', ( e ) => {
+    e.preventDefault();
+    const inputContainer = e.currentTarget.parentElement.parentElement;
+    const pElem = inputContainer.querySelector('.wrong-input-msg');
+    const actualInputVal = e.currentTarget.value;
+    let displayErr = false;
+    // Display incorrect Username err;
+    if ( !usernameRegex.test( actualInputVal ) ) {
+        // To display error only one time
+        if ( !displayErr ) {
+            displayErr = true;
+            usernameInput.classList.remove("correct-input");
+            usernameInput.classList.add("wrong-input");
+            pElem.innerHTML = 'Incorrect username format!';
+        }
+        return;
+    }
+    usernameInput.classList.add('correct-input');
+    pElem.innerHTML = '';
+    displayErr = false;
+});
 
 // Email Input Event
 emailInput.addEventListener('input', ( e ) => {
     e.preventDefault();
-    const parentElem = e.currentTarget.parentElement;
-    const inputContainer = parentElem.parentElement;
+    const inputContainer = e.currentTarget.parentElement.parentElement;
     const pElem = inputContainer.querySelector('.wrong-input-msg');
     const actualInputVal = e.currentTarget.value;
     let displayErr = false;
-    // Display incorrect email err;
     if ( !emailRegex.test( actualInputVal ) ) {
-        // To display error only one time
         if ( !displayErr ) {
             displayErr = true;
-            emailInput.style.class = "wrong-input";
+            emailInput.classList.remove("correct-input");
+            emailInput.classList.add("wrong-input");
             pElem.innerHTML = 'Incorrect email address format!';
         }
         return;
     }
-    document.removeChild( errElem );
+    emailInput.classList.add('correct-input');
+    pElem.innerHTML = '';
     displayErr = false;
 });
-// Username Input Event
-usernameInput.addEventListener('input', ( e ) => {
-    // do something...
-});
+
 // Password Input Event
 passwordInput.addEventListener('input', ( e ) => {
-    // do something...
+    e.preventDefault();
+    const inputContainer = e.currentTarget.parentElement.parentElement;
+    const pElem = inputContainer.querySelector('.wrong-input-msg');
+    const actualInputVal = e.currentTarget.value;
+    const confirmPwdVal = passwordConfirmInput.value;
+    let displayErr = false;
+    if ( !passwordRegex.test( actualInputVal ) ) {
+        if ( !displayErr ) {
+            displayErr = true;
+            passwordInput.classList.remove("correct-input");
+            passwordInput.classList.add("wrong-input");
+            pElem.innerHTML = 'Incorrect password address format!';
+        }
+    }
+    // If the password dont match with confirmation input
+    if ( actualInputVal !== confirmPwdVal ) {
+        passwordConfirmInput.classList.remove("correct-input");
+        passwordConfirmInput.classList.add("wrong-input");
+    }
+    if ( displayErr ) return;
+    // If the password Match With the regex
+    passwordInput.classList.add('correct-input');
+    pElem.innerHTML = '';
+    displayErr = false;
+    // If the password match with the confirmation input
+    if ( actualInputVal === confirmPwdVal ) {
+        passwordConfirmInput.classList.remove("wrong-input");
+        passwordConfirmInput.classList.add("correct-input");
+    }
 });
+
 // Password Confirmation Input Event
 passwordConfirmInput.addEventListener('input', ( e ) => {
-    // do something...
+    e.preventDefault();
+    const inputContainer = e.currentTarget.parentElement.parentElement;
+    const pElem = inputContainer.querySelector('.wrong-input-msg');
+    const actualInputVal = e.currentTarget.value;
+    const passwordVal = document.getElementById('password').value;
+    let displayErr = false;
+    if ( actualInputVal !== passwordVal ) {
+        if ( !displayErr ) {
+            displayErr = true;
+            passwordConfirmInput.classList.remove("correct-input");
+            passwordConfirmInput.classList.add("wrong-input");
+            pElem.innerHTML = 'Password not matching !';
+        }
+        return;
+    }
+    passwordConfirmInput.classList.remove("wrong-input")
+    passwordConfirmInput.classList.add('correct-input');
+    pElem.innerHTML = '';
+    displayErr = false;
 });
 
 registerForm.addEventListener('submit', async ( e ) => {
