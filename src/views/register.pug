@@ -4,18 +4,30 @@ html
 
     body
         main
-            h1 register page
+            h1.register-title register page
             section
-                form( class='register-form' )
-                    label(for="username") Username :
-                        input(type="name", name="username" id='username')
-                    label(for="email") Email :
-                        input(type="email", name="email" id='email')
-                    label(for="password") Password :
-                        input(type="password" name="password" id='password')
-                    label(for="password-confirmation") Password :
-                        input(type="password" name="password" id='password-confirmation')
-                    button(type="submit") Submit!
+                form( id="register-form" class="form-style")
+                    div.input-container
+                        label(for="username") Username :
+                            br
+                            input(type="name", name="username" id='username')
+                            p.wrong-input-msg
+                    div.input-container
+                        label(for="email") Email :
+                            br
+                            input(type="email", name="email" id='email')
+                            p.wrong-input-msg
+                    div.input-container
+                        label(for="password") Password :
+                            br
+                            input(type="password" name="password" id='password')
+                            p.wrong-input-msg
+                    div.input-container
+                        label(for="password-confirmation") Password Confirmation :
+                            br
+                            input(type="password" name="password" id='password-confirmation')
+                            p.wrong-input-msg
+                    button(type="submit" class="btn-submit") Submit!
 
         script( type="module" src="/js/services/register.js" charset="utf-8" defer) 
 
