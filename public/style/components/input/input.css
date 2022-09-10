@@ -1,0 +1,32 @@
+div.input-container {
+    width: 90%;
+    margin: 2vh auto;
+}
+
+div.input-container input {
+    width: 100%;
+    max-height: 40px;
+    min-height: 30px;
+    margin: auto;
+    margin-bottom: 0px;
+    font-size: 1.2em;
+    text-align: center;
+    outline: none;
+    border: 1px solid rgb(190, 190, 190); 
+    border-radius: 0.3em;
+    transition-duration: 500ms;
+}
+
+div.input-container input.wrong-input {
+    border-color: #d9534f;
+}
+
+div.input-container p.wrong-input-msg {
+    height: 2.8vh;
+    color: #d9534f;
+}
+
+div.input-container input.correct-input {
+    border-color: #5cb85c ;
+
+}
