@@ -30,7 +30,7 @@ app
     // .use( Express.static( 'public' ) )
     .use( Express.json() )
     .use( cookieParser() )
-    .use( Express.static( path.join( __dirname, '/../public'), {// Or dist
+    .use( Express.static( path.join( __dirname, '/../public'), {
         dotfiles: "ignore",
         etag:true,
         extensions: ['htm', 'html'],
@@ -44,9 +44,7 @@ app
     })); 
     
 app 
-    .get('/', ( req , res )  => {
-        res.render('index')
-    })
+    .get('/', ( req , res )  => res.render('index') )
     .use( registerRoutes )
     .use( loginRoutes )
     .use( authMiddleware )
@@ -55,5 +53,5 @@ app
 
 
 server.listen( PORT, () => {
-    console.log( `Server listening on: http://localhost:${PORT}/` )
+    console.log( `Server listening on: http://localhost:${PORT}/` );
 })
