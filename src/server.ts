@@ -51,14 +51,7 @@ app
     .use( loginRoutes )
     .use( authMiddleware )
     .use( logoutRoutes )
-    // .use( dashboardRoutes );
-    .get( '/dashboard/:uname', ( req, res ) => {
-        const username = req.params.uname;
-        console.log( username )
-        return res.render( 'auth-views/dashboard', { 
-            username
-        });
-    });
+    .use( dashboardRoutes );
 
 
 server.listen( PORT, () => {
