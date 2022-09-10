@@ -8,11 +8,13 @@ html
             section
                 form( class='register-form' )
                     label(for="username") Username :
-                        input(type="name", name="username" class='username')
+                        input(type="name", name="username" id='username')
                     label(for="email") Email :
-                        input(type="email", name="email" class='email')
+                        input(type="email", name="email" id='email')
                     label(for="password") Password :
-                        input(type="password" name="password" class='password')
+                        input(type="password" name="password" id='password')
+                    label(for="password-confirmation") Password :
+                        input(type="password" name="password" id='password-confirmation')
                     button(type="submit") Submit!
 
         script( type="module" src="/js/services/register.js" charset="utf-8" defer) 
