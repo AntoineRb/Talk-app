@@ -1,0 +1,75 @@
+/*
+    Form Style
+*/
+form.form-style {
+    margin: 10% auto;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(245, 245, 245);
+    border-radius: 1em;
+    padding: 2% 0;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    transition-duration: 500ms;
+}
+/*
+    Btn Submit Style
+*/
+form.form-style button.btn-submit{
+    width: 50%;
+    height: 5vh;
+    margin: auto;
+    border: none;
+    outline: none;
+    background-color: #0275d8;
+    border-radius: 2em;
+    font-size: 1em;
+    font-weight: 500;
+    color: #ffffff;
+    cursor: pointer;
+    transition-duration: 500ms;
+}
+form.form-style button.btn-submit:hover{
+    background-color: #2f8ada;
+}
+/*
+    Responsive Design
+*/
+@media screen and (max-width: 600px) {
+    form.form-style {
+        width: 100%;
+    }
+}
+@media screen and (min-width: 601px) {
+    form.form-style {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 950px) {
+    form.form-style {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    form.form-style {
+        width: 60%;
+    }
+}
+@media screen and (min-width: 1450px) {
+    form.form-style {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    form.form-style {
+        width: 40%;
+    }
+}
+
+@media screen and (min-width: 1750px) {
+    form.form-style {
+        width: 35%;
+    }
+}
