@@ -2,9 +2,8 @@ import { Router } from "express";
 
 const router = Router();
 
-router.get( '/dashboard?uname=:uname', ( req, res ) => {
+router.get( '/dashboard/:uname', ( req, res ) => {
     const username = req.params.uname;
-    console.log( username )
     return res.render( 'auth-views/dashboard', { 
         username
     });
