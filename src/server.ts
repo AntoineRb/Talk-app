@@ -11,9 +11,9 @@ import config from "./config";
 // Middleware
 import authMiddleware from "@/middlewares/jwt/jwt.validate.middleware";
 // Routes
-import registerRoutes from "@/routes/user/register.routes";
-import loginRoutes from "@/routes/user/login.routes";
-import logoutRoutes from "@/routes/user/logout.routes";
+import registerRoutes from "@/routes/user/auth/register.routes";
+import loginRoutes from "@/routes/user/auth/login.routes";
+import logoutRoutes from "@/routes/user/auth/logout.routes";
 import dashboardRoutes from "@/routes/dashboard/dashboard.routes";
 
 
