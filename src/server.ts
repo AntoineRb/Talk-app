@@ -16,6 +16,7 @@ import registerRoutes from "@/routes/user/auth/register.routes";
 import loginRoutes from "@/routes/user/auth/login.routes";
 import logoutRoutes from "@/routes/user/auth/logout.routes";
 import dashboardRoutes from "@/routes/dashboard/dashboard.routes";
+import roomRoutes from "@/routes/room/room.routes";
 
 
 const app = Express();
@@ -38,7 +39,8 @@ app
     .use( loginRoutes )
     .use( authMiddleware )
     .use( logoutRoutes )
-    .use( dashboardRoutes );
+    .use( dashboardRoutes )
+    .use( roomRoutes );
 
 
 server.listen( PORT, () => {
