@@ -12,6 +12,13 @@ form.form-style {
     transition-duration: 500ms;
 }
 /*
+    Form title style
+*/
+form.form-style h3.form-title {
+    color: #383e42;
+    text-align: center;
+}
+/*
     Btn Submit Style
 */
 form.form-style button.btn-submit{
@@ -30,6 +37,16 @@ form.form-style button.btn-submit{
 }
 form.form-style button.btn-submit:hover{
     background-color: #2f8ada;
+}
+/*
+    Bottom Link
+*/
+form.form-style a.form-bottom-link {
+    color: #2f8ada;
+    text-align: left;
+    /* font-style: italic; */
+    text-align: center;
+    margin-top: 1vh;
 }
 /*
     Responsive Design
