@@ -1,53 +1,9 @@
 import config from "./config.js"
-import { emailRegex, passwordRegex, usernameRegex } from "../utils/regex.js";
-//Login Form
-const loginForm = document.querySelector('#form-login');
-// Email Input
-const emailInput = loginForm.querySelector('#email');
-// Password Inputs
-const passwordInput = loginForm.querySelector('#password');
-// Email Input Event
-emailInput.addEventListener('input', ( e ) => {
-    e.preventDefault();
-    const inputContainer = e.currentTarget.parentElement.parentElement;
-    const pElem = inputContainer.querySelector('.wrong-input-msg');
-    const actualInputVal = e.currentTarget.value;
-    let displayErr = false;
-    if ( !emailRegex.test( actualInputVal ) ) {
-        if ( !displayErr ) {
-            displayErr = true;
-            emailInput.classList.remove("correct-input");
-            emailInput.classList.add("wrong-input");
-            pElem.innerHTML = 'Incorrect email address format!';
-        }
-        return;
-    }
-    emailInput.classList.add('correct-input');
-    pElem.innerHTML = '';
-    displayErr = false;
-});
+import { emailRegex, passwordRegex } from "../utils/regex.js";
 
-// Password Input Event
-passwordInput.addEventListener('input', ( e ) => {
-    e.preventDefault();
-    const inputContainer = e.currentTarget.parentElement.parentElement;
-    const pElem = inputContainer.querySelector('.wrong-input-msg');
-    const actualInputVal = e.currentTarget.value;
-    let displayErr = false;
-    if ( !passwordRegex.test( actualInputVal ) ) {
-        if ( !displayErr ) {
-            displayErr = true;
-            passwordInput.classList.remove("correct-input");
-            passwordInput.classList.add("wrong-input");
-            pElem.innerHTML = 'Incorrect password format!';
-        }
-        return;
-    }
-    // If the password Match With the regex
-    passwordInput.classList.add('correct-input');
-    pElem.innerHTML = '';
-    displayErr = false;
-});
+const loginForm = document.querySelector('#form-login');
+const emailInput = loginForm.querySelector('#email');
+const passwordInput = loginForm.querySelector('#password');
 
 loginForm.addEventListener('submit', async ( e ) => {
     e.preventDefault();
@@ -71,12 +27,23 @@ loginForm.addEventListener('submit', async ( e ) => {
             password
         }),
     })
-    .then( response => response.json() )
-    .then( ( response ) => {
-        if ( response.message == "success" ) {
-            window.location.href = `/dashboard/${response.username}`
-        } else {
-            alert('Incorrect Email or Password !')
+    .then( response => {
+        const statusCode = response.status;
+        if ( statusCode === 500 ) {
+            alert('An error has occured, you can retry!');
+            window.location.reload();
         }
+        if ( statusCode !== 200 ) {
+            alert('Incorrect Email or Password !!');
+        }
+        return {
+            response: response.json(),
+            statusCode: statusCode,
+        };
     })
+    .then(({ response, statusCode }) => {
+        if ( statusCode === 200 ) {
+            window.location.href = `/dashboard/${response.username}`
+        }
+    });
 });
