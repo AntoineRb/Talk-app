@@ -84,8 +84,9 @@ const loginPostController = async ( req:Request, res:Response ) => {
     await generateToken( tokenPayload, res );
     return res
     .status( 200 )
-    .render( 'auth-views/dashboard', { 
-        username:userObj.user.username
+    .send({ 
+        message:'success', 
+        username: userObj.user.username
     });
 }
 export default loginPostController;
