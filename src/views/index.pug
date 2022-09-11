@@ -2,8 +2,17 @@ doctype html
 html 
     include components/head
     body
-        h1 Welcome to visio-app !
-
-        ul
-            li
-                a(href="/register") Register
+        main
+            section
+                h1 Welcome to visio-app !
+                form.form-style 
+                    h3.form-title Login
+                    div.input-container
+                        label(for="email") Email :
+                        input(type="email", name="email", id="email")
+                    div.input-container
+                        label(for="password") Password :
+                        input(type="password", name="password", id="password") 
+                    button(type="submit" class="btn-submit") Submit!
+                    a(href="/" class="form-bottom-link") Lost your password?
+                    a(href="/register" class="form-bottom-link") Click here to register!
