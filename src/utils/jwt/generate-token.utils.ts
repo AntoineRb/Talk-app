@@ -22,11 +22,11 @@ const generateToken = async ( userInfo:ITokenPayload, res:Response ) => {
         expiresIn: 60 * 30
     }
     const token:string = sign( payload, rsaPrivateKey, signOptions );
-    const httpCookieOptions = {
+    res.cookie('session', token, {
         maxAge: 1000 * 60 * 30,
         httpOnly: true,
         signed: false,
-    }
-    res.cookie('session', token, httpCookieOptions );
+        sameSite: 'strict',
+    });
 }
 export default generateToken;
