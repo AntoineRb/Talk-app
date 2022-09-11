@@ -36,13 +36,10 @@ loginForm.addEventListener('submit', async ( e ) => {
         if ( statusCode !== 200 ) {
             alert('Incorrect Email or Password !!');
         }
-        return {
-            response: response.json(),
-            statusCode: statusCode,
-        };
+        return response.json();
     })
-    .then(({ response, statusCode }) => {
-        if ( statusCode === 200 ) {
+    .then(( response ) => {
+        if ( response.message === 'success' ) {
             window.location.href = `/dashboard/${response.username}`
         }
     });
