@@ -3,21 +3,17 @@ import { Router } from "express";
 
 const router = Router();
 router.use( async ( req, res, next ) => {
-    const jwt =  req.cookies.session
+    const jwt:string =  req.cookies.session
     if ( !jwt ) {
         return res
         .status(401)
-        .json({
-            message: "Unauthenticated"
-        });
+        .redirect('/');
     }
     const decodedToken = await validateToken( jwt );
     if ( !decodedToken ) {
         return res
         .status(401)
-        .json({
-            message: "Unauthenticated"
-        });
+        .redirect('/');
     }
     next();
 });
