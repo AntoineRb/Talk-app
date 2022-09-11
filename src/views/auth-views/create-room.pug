@@ -1,0 +1,13 @@
+doctype html
+html 
+    include ../components/head
+    body 
+        main 
+            section
+                form(class="form-style" id="form-add-room")
+                    h3.form-title Create new room
+                    div.input-container
+                        label(for="room-name") Room name :
+                            input(type="text", name="room-name" id="room-name-input")
+                    button(type="submit" class="btn-submit")  Submit!
+        script( type="module" src="/js/services/create-room.js" charset="utf-8" defer ) 
