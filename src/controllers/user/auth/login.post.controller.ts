@@ -2,7 +2,6 @@ import { type Request, type Response } from "express";
 import { Users } from "@prisma/client";
 // Regex
 import emailRegex from "@/utils/regex/email.regex";
-import usernameRegex from "@/utils/regex/username.regex";
 import passwordRegex from "@/utils/regex/password.regex";
 // DB Services
 import findLoginWhereEmail from "@/services/login/login.findUnique.email.service";
@@ -39,30 +38,38 @@ const loginPostController = async ( req:Request, res:Response ) => {
         .status( 412 )
         .json({
             message: "Need a valid email"
-        })
+        });
     }
     if ( !emailRegex.test( email ) ) {
         return res
         .status( 412 )
         .json({
             message: "Need a valid email"
-        })
+        });
     }
     if ( !passwordRegex.test( password ) ) {
         return res
         .status( 412 )
         .json({
             message: "Unexpected password"
-        })
+        });
     }
     // Find Login Where Email
-    userObj = await findLoginWhereEmail( email );
+    try {
+        userObj = await findLoginWhereEmail( email )
+    } catch ( err ) {
+        return res.status( 500 )
+        .json({
+            message: "Cannot find user!"
+        });
+    }
+
     if ( !userObj || !userObj.user ) {
         return res
         .status( 401 )
         .json({
             message: "Cannot find user!"
-        })
+        });
     }
     if ( userObj.log_password ) {
         isExpectedPassword = comparePassword( password, userObj.log_password );
