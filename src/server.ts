@@ -27,7 +27,6 @@ app
     .use( '/peersjs', peerServer )
     .set( 'view engine', 'pug' )
     .set( 'views', path.join( __dirname, '/views' ) )
-    // .use( Express.static( 'public' ) )
     .use( Express.json() )
     .use( cookieParser() )
     .use( Express.static( path.join( __dirname, '/../public'), {
