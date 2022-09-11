@@ -5,14 +5,17 @@ html
         main
             section
                 h1 Welcome to visio-app !
-                form.form-style 
+                form( class="form-style" id="form-login" )
                     h3.form-title Login
                     div.input-container
                         label(for="email") Email :
-                        input(type="email", name="email", id="email")
+                            input(type="email", name="email", id="email") 
+                            p.wrong-input-msg
                     div.input-container
                         label(for="password") Password :
-                        input(type="password", name="password", id="password") 
+                            input(type="password", name="password", id="password")
+                            p.wrong-input-msg
                     button(type="submit" class="btn-submit") Submit!
                     a(href="/" class="form-bottom-link") Lost your password?
                     a(href="/register" class="form-bottom-link") Click here to register!
+        script( type="module" src="/js/services/login.js" charset="utf-8" defer ) 
