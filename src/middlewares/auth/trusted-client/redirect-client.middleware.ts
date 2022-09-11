@@ -7,7 +7,6 @@ const router = Router();
 router.use( async ( req, res, next ) => {
     const jwt:string|undefined = req.cookies.session;
     let decodedToken:JwtPayload|undefined;
-    console.log(jwt)
     if ( jwt ) {
         decodedToken = await validateToken( jwt );  
     }
