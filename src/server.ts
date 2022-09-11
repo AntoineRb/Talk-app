@@ -9,8 +9,9 @@ import http from "http";
 // Visio-app Config module
 import config from "./config";
 // Middleware
-import authMiddleware from "@/middlewares/jwt/jwt.validate.middleware";
+import authMiddleware from "@/middlewares/auth/jwt/jwt.validate.middleware";
 // Routes
+import indexRoutes from "@/routes/index.routes"
 import registerRoutes from "@/routes/user/auth/register.routes";
 import loginRoutes from "@/routes/user/auth/login.routes";
 import logoutRoutes from "@/routes/user/auth/logout.routes";
@@ -29,21 +30,10 @@ app
     .set( 'views', path.join( __dirname, '/views' ) )
     .use( Express.json() )
     .use( cookieParser() )
-    .use( Express.static( path.join( __dirname, '/../public'), {
-        dotfiles: "ignore",
-        etag:true,
-        extensions: ['htm', 'html'],
-        index: false,
-        maxAge: "7d",
-        redirect: false,
-        setHeaders: ( res ) => {
-            const actualTime = Date.now()
-            res.set("x-timestamp", actualTime.toString() );
-        },
-    })); 
+    .use( Express.static( path.join( __dirname, '/../public'), config.staticDirConf )); 
     
 app 
-    .get('/', ( req , res )  => res.render('index') )
+    .use( indexRoutes )
     .use( registerRoutes )
     .use( loginRoutes )
     .use( authMiddleware )
