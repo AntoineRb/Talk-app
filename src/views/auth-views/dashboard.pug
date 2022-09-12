@@ -1,2 +1,21 @@
-h1 Welcome #{username} !
-    a(href="/room") Create new rooom
+doctype html
+html 
+    include ../components/head
+    body
+        main
+            header
+                h1 Welcome #{username} !
+                a(href="/room") Create new rooom
+            section.room-section
+                h3.room-section-heading
+                ul
+                    each item in userRooms
+                        - const room = item.room
+                        - const createAt = new Date( room.createAt ).toLocaleString();
+                        li( id= room.ro_id )
+                            h4.room-name= room.ro_name
+                            time= createAt
+
+                        
+
+    
