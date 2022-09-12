@@ -1,0 +1,90 @@
+section.room-section {
+    width: 30%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(245, 245, 245);
+    border-radius: 1em;
+    padding: 2% 0;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    transition-duration: 500ms;
+}
+
+section.room-section h3.room-section-heading {
+    text-align: center;
+    font-size: 2em;
+    font-weight: 700;
+}
+
+section.room-section ul.rooms-list {
+    width: 100%;
+    margin: auto;
+}
+
+section.room-section li.myroom-list-item {
+    background-color: #448cf7;
+    color: #ffffff;
+    width: 90%;
+    margin: 1vh auto;
+    padding: 1vh;
+    height: 6vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition-duration: 400ms;
+}
+section.room-section li.myroom-list-item:hover {
+    background-color: #1d77fd;
+}
+
+section.room-section li.myroom-list-item h4.room-name{
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+section.room-section li.myroom-list-item time.room-create-at{
+    font-size: 1.2em;
+    font-weight: 400;
+}
+@media screen and (max-width: 600px) {
+    section.room-section {
+        width: 90%;
+    }
+}
+@media screen and (min-width: 601px) {
+    section.room-section {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 950px) {
+    section.room-section {
+        width: 58%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    section.room-section {
+        width: 45%;
+    }
+}
+@media screen and (min-width: 1450px) {
+    section.room-section {
+        width: 40%;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    section.room-section {
+        width: 35%;
+    }
+}
+
+@media screen and (min-width: 1750px) {
+    section.room-section {
+        width: 30%;
+    }
+}
+
