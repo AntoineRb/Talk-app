@@ -13,7 +13,7 @@ interface ICreateRoom {
     ro_name:string,
 }
 
-const createRoomPostController = async ( req:Request, res:Response ) => {
+const roomPostController = async ( req:Request, res:Response ) => {
     const jwt:string = req.cookies.session;
     const data:ICreateRoom = req.body;
     const { ro_name } = data;
@@ -66,4 +66,4 @@ const createRoomPostController = async ( req:Request, res:Response ) => {
     .status( 200 )
     .json({ message: "success" });
 };
-export default createRoomPostController;
+export default roomPostController;

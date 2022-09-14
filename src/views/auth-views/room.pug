@@ -1,0 +1,13 @@
+doctype html
+html 
+    include ../components/head
+    body
+    header
+        h1 #{ ro_name }
+    main
+        section( id=ro_id class="room-section" )
+            div( id="video-container" )
+
+    script( src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js" defer )
+    script( src="/socket.io/socket.io.js" defer )
+    script( type="module" src="/js/services/room.js" charset="utf-8" defer) 
