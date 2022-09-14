@@ -18,7 +18,6 @@ import logoutRoutes from "@/routes/user/auth/logout.routes";
 import dashboardRoutes from "@/routes/dashboard/dashboard.routes";
 import roomRoutes from "@/routes/room/room.routes";
 
-
 const app = Express();
 const server = new http.Server( app );
 const io = new Server( server );
@@ -42,6 +41,16 @@ app
     .use( dashboardRoutes )
     .use( roomRoutes );
 
+    io.on( "connection", ( socket ) => {
+        socket.on( 'newUser', ( id, room ) => {
+            console.log("New user :\n" + "ID:" + id + "\n" + "Room:" + room );
+            socket.join( room );
+            socket.to( room ).emit( 'userJoined', id );
+            socket.on( 'disconnect', () => {
+                socket.to( room ).emit( 'userDisconnect', id );
+            });
+        });
+    });
 
 server.listen( PORT, () => {
     console.log( `Server listening on: http://localhost:${PORT}/` );
