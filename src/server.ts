@@ -43,7 +43,6 @@ app
 
     io.on( "connection", ( socket ) => {
         socket.on( 'newUser', ( id, room ) => {
-            console.log("New user :\n" + "ID:" + id + "\n" + "Room:" + room );
             socket.join( room );
             socket.to( room ).emit( 'userJoined', id );
             socket.on( 'disconnect', () => {

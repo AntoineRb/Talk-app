@@ -14,12 +14,12 @@ navigator.mediaDevices.getUserMedia({
   audio:true
 }).then(( stream ) => {
   userVideoStream = stream;
-  addVideo( userVideo , stream ); // self user
+  addVideo( userVideo , stream );
   peer.on( 'call' , call => {
     call.answer( stream );
     const vid = document.createElement('video');
     call.on('stream' , userStream => {
-      addVideo(vid , userStream); // other user
+      addVideo(vid , userStream);
     })
     call.on('error' , (err)=>{
       alert(err)
