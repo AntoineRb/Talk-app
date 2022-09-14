@@ -4,10 +4,10 @@ html
     body
         header
             h1 Welcome #{username} !
-            a(href="/room") Create new rooom
+            a(href="/room/new") Create new rooom
         main
-            section.room-section
-                h3.room-section-heading My rooms :
+            section.room-list-section
+                h3.room-list-section-heading My rooms :
                 ul.rooms-list
                     each item in userRooms
                         - const room = item.room
