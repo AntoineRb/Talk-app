@@ -1,10 +1,11 @@
 // Types
 import { type Request, type Response } from "express";
 import { type JwtPayload } from "jsonwebtoken";
-import { Rooms, Room_joined } from "@prisma/client";
+import { Rooms, Room_added, Room_joined } from "@prisma/client";
 // DB services
 import findRoomWhereId from "@/services/rooms/rooms.findUnique.service";
 import findUniqueRoomJoined from "@/services/room-joined/room-joined.findUnique.service";
+import findUniqueRoomAdded from "@/services/room-added/room-added-findUnique.service";
 // third party modules
 import { validate as uuidValidate } from "uuid";
 // Utils
@@ -15,14 +16,19 @@ const roomGetController = async ( req:Request, res:Response ) => {
     const jwt:string|null = req.cookies.session;
     let room:Rooms|null;
     let roomJoined:Room_joined[]|null;
+    let roomAdded:Room_added[]|null;
     let decodedPayload:JwtPayload|undefined;
     let userID:string|undefined;
     if ( typeof jwt !== 'string' ) {
-        return// error...
+        return res
+        .status( 412 )
+        .render('404');
     }
     decodedPayload = validateToken( jwt );
     if ( !decodedPayload || !decodedPayload.user_id ) {
-        return// error...
+        return res
+        .status( 412 )
+        .render('404');
     }
     userID = decodedPayload.user_id;
     if ( typeof userID !== "string" || !uuidValidate( userID ) ) {
@@ -51,12 +57,14 @@ const roomGetController = async ( req:Request, res:Response ) => {
     }
     try {
         roomJoined = await findUniqueRoomJoined( userID, room.ro_id );
+        roomAdded = await findUniqueRoomAdded( userID, room.ro_id );
     } catch ( err ) {
         return res
         .status( 401 )
         .redirect('/');
     }
-    if ( !roomJoined ) {
+    // if the user is not invited to participate and if user is not the owner of the room
+    if ( !roomJoined && !roomAdded ) {
         return res
         .status( 401 )
         .redirect('/');
